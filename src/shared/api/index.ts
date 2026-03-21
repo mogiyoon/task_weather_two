@@ -1,0 +1,1 @@
+export { owmClient } from './weather-api';
