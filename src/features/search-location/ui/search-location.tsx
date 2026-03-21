@@ -4,6 +4,7 @@ import { useState } from "react";
 import { SearchInput } from "./search-input";
 import type { SearchLocationItem } from "./search-result-item";
 import { SearchResults } from "./search-result";
+import { searchDistricts } from "@/src/entities/location";
 
 interface SearchLocationProps {
   onSelect: (item: SearchLocationItem) => void;
@@ -19,19 +20,23 @@ export function SearchLocation({ onSelect }: SearchLocationProps) {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<SearchLocationItem[]>([]);
 
-  const handleSearch = () => {
-    const q = query.trim();
+  const handleQuery = (value: string) => {
+    setQuery(value);
+    const q = value.trim();
 
     if (!q) {
       setResults([]);
       return;
     }
 
-    const filtered = MOCK_ITEMS.filter(
-      (item) => item.title.includes(q) || item.subtitle?.includes(q),
-    );
-
+    const filtered = searchDistricts(q);
     setResults(filtered);
+  }
+
+  const handleSearch = () => {
+    if (results) {
+      onSelect(results[0]);
+    }
   };
 
   const handleSelect = (item: SearchLocationItem) => {
@@ -42,7 +47,7 @@ export function SearchLocation({ onSelect }: SearchLocationProps) {
 
   return (
     <div className="space-y-3">
-      <SearchInput value={query} onChange={setQuery} onSearch={handleSearch} />
+      <SearchInput value={query} onChange={handleQuery} onSearch={handleSearch} />
 
       <div className="relative">
         <div className="absolute">
