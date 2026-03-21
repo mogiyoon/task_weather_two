@@ -4,6 +4,7 @@ export interface WeatherMain {
   temp_min: number;
   temp_max: number;
   humidity: number;
+  pressure?: number;
 }
 
 export interface WeatherDescription {
@@ -13,13 +14,40 @@ export interface WeatherDescription {
   icon: string;
 }
 
+export interface WeatherCoord {
+  lat: number;
+  lon: number;
+}
+
+export interface WeatherSys {
+  country: string;
+  sunrise: number;
+  sunset: number;
+}
+
+export interface WeatherWind {
+  speed: number;
+  deg?: number;
+}
+
 export interface CurrentWeather {
-  coord: { lat: number; lon: number };
+  coord: WeatherCoord;
   weather: WeatherDescription[];
   main: WeatherMain;
   name: string;
   dt: number;
   timezone: number;
-  sys: { country: string; sunrise: number; sunset: number };
-  wind: { speed: number };
+  sys: WeatherSys;
+  wind: WeatherWind;
+}
+
+export interface HourlyForecastItem {
+  dt: number;
+  temp: number;
+  weather: WeatherDescription[];
+}
+
+export interface WeatherOverview {
+  current: CurrentWeather;
+  hourly: HourlyForecastItem[];
 }

@@ -1,9 +1,10 @@
-import { TestButton } from "@/src/widget/TestButton";
+import { TestButton } from "@/src/widgets/TestButton";
+import { WeatherWidget } from '@/src/widgets/weather/ui/weather-widget';
 
 export function HomePage() {
   return (
     <>
-      <TestButton />
+      <WeatherWidget />
     </>
   );
 }
