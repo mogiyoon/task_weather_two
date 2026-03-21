@@ -41,7 +41,7 @@ export function SearchLocation({ onSelect }: SearchLocationProps) {
 
   const handleSelect = (item: SearchLocationItem) => {
     onSelect(item);
-    setQuery(item.title);
+    setQuery("");
     setResults([]);
   };
 
