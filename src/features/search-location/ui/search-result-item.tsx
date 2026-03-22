@@ -1,10 +1,6 @@
 "use client";
 
-export interface SearchLocationItem {
-  id: string;
-  title: string;
-  subtitle?: string;
-}
+import { SearchLocationItem } from '@/src/entities/location';
 
 interface SearchResultItemProps {
   item: SearchLocationItem;

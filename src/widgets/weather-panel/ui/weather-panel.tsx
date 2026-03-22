@@ -1,10 +1,9 @@
 "use client";
 
-import { SearchInput } from "@/src/features/search-location";
 import { WeatherWidget } from "../../weather/ui/weather-widget";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SearchLocation } from "@/src/features/search-location/ui/search-location";
-import { SearchLocationItem } from "@/src/features/search-location/ui/search-result-item";
+import { SearchLocationItem } from '@/src/entities/location';
 
 export function WeatherPanel() {
   const [location, setLocation] = useState<SearchLocationItem>();
@@ -13,7 +12,7 @@ export function WeatherPanel() {
     <div>
       <SearchLocation onSelect={(val) => setLocation(val)} />
       <div className="flex justify-center items-center h-full">
-        <WeatherWidget />
+        <WeatherWidget location={location}/>
       </div>
     </div>
   );
