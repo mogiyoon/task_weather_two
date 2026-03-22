@@ -1,6 +1,6 @@
 "use client";
 
-import { getWeather } from '../entities/weather/api/get-weather';
+import { getCoordWeather } from '../entities/weather/api/get-weather';
 import { getCurrentPosition } from '../shared/lib/geolocation';
 
 export function TestButton() {
@@ -8,7 +8,7 @@ export function TestButton() {
     <button
       onClick={async () => {
         const { coords } = await getCurrentPosition();
-        const data = await getWeather(coords.latitude, coords.longitude);
+        const data = await getCoordWeather(coords.latitude, coords.longitude);
         console.log("data test ", data);
       }}
     >

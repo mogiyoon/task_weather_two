@@ -51,3 +51,29 @@ export interface WeatherOverview {
   current: CurrentWeather;
   hourly: HourlyForecastItem[];
 }
+
+export interface ForecastItem {
+  dt: number;
+  main: WeatherMain;
+  weather: WeatherDescription[];
+  dt_txt: string;
+}
+
+export interface ForecastResponse {
+  list: ForecastItem[];
+  city: {
+    name: string;
+    coord: { lat: number; lon: number };
+    country: string;
+    timezone: number;
+  };
+}
+
+export interface GeoLocation {
+  name: string;
+  lat: number;
+  lon: number;
+  country: string;
+  state?: string;
+  local_names?: Record<string, string>;
+}

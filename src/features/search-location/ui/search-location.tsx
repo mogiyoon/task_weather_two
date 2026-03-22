@@ -2,19 +2,12 @@
 
 import { useState } from "react";
 import { SearchInput } from "./search-input";
-import type { SearchLocationItem } from "./search-result-item";
 import { SearchResults } from "./search-result";
-import { searchDistricts } from "@/src/entities/location";
+import { searchDistricts, SearchLocationItem } from "@/src/entities/location";
 
 interface SearchLocationProps {
   onSelect: (item: SearchLocationItem) => void;
 }
-
-const MOCK_ITEMS: SearchLocationItem[] = [
-  { id: "seoul-gangnam", title: "강남", subtitle: "서울 강남구" },
-  { id: "seoul-banpo", title: "반포", subtitle: "서울 서초구 반포동" },
-  { id: "busan-haeundae", title: "해운대", subtitle: "부산 해운대구" },
-];
 
 export function SearchLocation({ onSelect }: SearchLocationProps) {
   const [query, setQuery] = useState("");

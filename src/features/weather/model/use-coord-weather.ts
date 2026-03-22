@@ -1,10 +1,10 @@
 "use client";
 
-import { getWeather } from "@/src/entities/weather/api/get-weather";
+import { weatherApi } from '@/src/entities/weather/api/get-weather';
 import { weatherQueryKeys } from "@/src/entities/weather/model/query-key";
 import { useQuery } from "@tanstack/react-query";
 
-export const useWeather = ({ lat, lon }: { lat?: number; lon?: number }) => {
+export const useCoordWeather = ({ lat, lon }: { lat: number | undefined; lon: number | undefined }) => {
   const { data, isPending, isError, error } = useQuery({
     queryKey:
       lat != null && lon != null
@@ -12,9 +12,9 @@ export const useWeather = ({ lat, lon }: { lat?: number; lon?: number }) => {
         : weatherQueryKeys.all,
     queryFn: async () => {
       if (lat == null || lon == null) {
-        throw new Error("위치 정보가 없습니다.");
+        return null
       }
-      return getWeather(lat, lon);
+      return weatherApi.getCoordWeather(lat, lon);
     },
     enabled: lat != null && lon != null,
   });
